@@ -8,6 +8,7 @@
       <!-- Vue CDN -->
       <script src="<?= base_url('assets/js/vue.js') ?>"></script>
       <script src="<?= base_url('assets/js/galery.js') ?>"></script>
+      <script src="<?= base_url('assets/js/fields.js') ?>"></script>
       <script type="text/javascript">
          $(document).ready(function() {
             $('#sidebarCollapse').on('click', function() {
