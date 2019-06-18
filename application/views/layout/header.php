@@ -10,8 +10,8 @@
    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
    <link rel="stylesheet" href="<?= base_url('assets/font-awesome/css/all.css') ?>">
    <link rel="stylesheet" href="<?= base_url('assets/css/base.css') ?>">
-
    <title>CI + VUE</title>
+   <script> var baseUrl = "<?= base_url() ;?>";</script>
 </head>
 
 <body>

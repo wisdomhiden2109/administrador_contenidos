@@ -11,15 +11,19 @@ class Structure extends CI_Controller
 
    public function index()
    {
+      $data = array(
+         'templates' => $this->structure->getTemplates()
+      );
       $this->load->view('layout/header');
-      $this->load->view('structure/list');
+      $this->load->view('structure/list',$data);
       $this->load->view('layout/footer');
    }
 
    public function create()
    {
       $data = array(
-         'typeFields' => $this->structure->getFields() 
+         'contents' => $this->structure->getContents(),
+         'typeFields' => $this->structure->getTypeFields()
       );
 
       $this->load->view('layout/header');
@@ -32,5 +36,21 @@ class Structure extends CI_Controller
       $this->load->view('layout/header');
       $this->load->view('structure/edit');
       $this->load->view('layout/footer');
+   }
+
+   public function createField(){
+     echo json_encode($this->structure->createField( Axios::getRequest()));
+   }
+
+   public function getFields($template){
+      echo json_encode($this->structure-> getFields($template));
+   }
+
+   public function getContents(){
+      echo json_encode($this->structure->getContents());
+   }
+
+   public function createStructure(){
+      echo json_encode($this->structure->createStructure(Axios::getRequest()));
    }
 }
