@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-06-2019 a las 23:22:10
+-- Tiempo de generación: 19-06-2019 a las 23:27:03
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `campo` (
   `id_campo` int(11) NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
-  `descripcion` varchar(45) DEFAULT NULL,
+  `descripcion` text,
   `requerido` int(1) DEFAULT '0',
   `orden` int(11) NOT NULL,
   `ancho` int(11) NOT NULL,
@@ -46,26 +46,18 @@ CREATE TABLE `campo` (
 --
 
 INSERT INTO `campo` (`id_campo`, `nombre`, `descripcion`, `requerido`, `orden`, `ancho`, `alto`, `opciones`, `id_plantilla`, `id_tipo`) VALUES
-(5, 'Titulo', 'Escriba el titulo de la sección', 1, 1, 0, 0, '[]', 5, 1),
-(6, 'Parrafo derecho', 'Escriba el resumen', 1, 1, 0, 0, '[]', 5, 2),
-(7, 'Imagen principal', 'Imagen de la parte izquierda', 1, 1, 500, 500, '[]', 5, 6),
-(8, 'Titulo del libro', 'Escriba el titulo del libro', 1, 1, 0, 0, '[]', 6, 1),
-(9, 'sa', 'sdsd', 1, 1, 0, 0, '[]', 7, 1),
-(10, 'sdsd', 'sdsdsd', 0, 1, 0, 0, '[]', 8, 2),
-(11, 'sdsd 2', 'neuvo', 1, 1, 0, 0, '[\"gato\",\"perro\"]', 8, 3),
-(12, 'sdsd 2', 'neuvo', 1, 1, 0, 0, '[\"gato\",\"perro\",\"elefante\"]', 8, 3),
-(13, 'sdsdsd', 'sdsd', 1, 1, 0, 0, '[]', 9, 1),
-(14, 'sdsd', 'sdsdsdsd', 0, 1, 0, 0, '[]', 10, 2),
-(15, 'dssd', 'sdsdsd', 1, 1, 0, 0, '[]', 11, 2),
-(16, 'dssd', 'sdsdsd', 0, 1, 0, 0, '[]', 11, 2),
-(17, 'dssd', 'sdsdsd', 1, 1, 0, 0, '[\"perro\"]', 11, 5),
-(19, 'Titulo principal', 'A continuación escriba el título del libro', 1, 1, 0, 0, '[]', 13, 1),
-(20, 'gf', 'gfgfgf', 1, 1, 0, 0, '[]', 14, 1),
-(21, 'sdsd', 'sdsdsd', 1, 1, 0, 0, '[]', 15, 2),
-(22, 'sdsd', 'dsdss', 1, 1, 0, 0, '[]', 16, 2),
-(23, 'addda', 'ghgh', 1, 2, 0, 0, '[\"gato\",\"perro\"]', 16, 3),
-(24, 'prueba', 'nuevo', 0, 5, 0, 0, '[\"gato\",\"perro\"]', 16, 2),
-(25, 'prueba 3', 'unica', 1, 3, 0, 0, '[\"gato\",\"perro\"]', 16, 4);
+(26, 'Título de la página', 'A continuación escriba el titulo principal', 1, 1, 0, 0, '[]', 23, 1),
+(28, 'Pregunta', 'A continuación escribe la pregunta', 1, 1, 0, 0, '[]', 25, 1),
+(29, 'Respuesta', 'A continuación escribe la respuesta', 1, 2, 0, 0, '[]', 25, 2),
+(30, 'Seleccione imagen', 'Imagen que aparecerá en la página de inicio', 1, 1, 800, 800, '[]', 26, 6),
+(31, 'Url de la imagen', 'Escriba la url cuando le den click a la image', 1, 2, 800, 800, '[]', 26, 1),
+(32, 'Imagen del slider ', 'Imagen que aparece en el home con movimiento', 1, 1, 800, 800, '[]', 27, 6),
+(33, 'Url de la imagen', 'Url donde va a redireccionar al dar click en ', 1, 2, 800, 800, '[]', 27, 1),
+(34, 'Tipo de entrada', 'Seleccione el tipo de entrada a crear', 1, 1, 0, 0, '[\"libros\",\"revistas\",\"e-book\",\"otro\"]', 28, 3),
+(35, 'Título del blog', 'Escriba el nombre del blog', 1, 2, 0, 0, '[\"libros\",\"revistas\",\"e-book\",\"otro\"]', 28, 1),
+(36, 'Contenido del blog', 'Ingrese el contenido del articulo', 1, 4, 0, 0, '[\"libros\",\"revistas\",\"e-book\",\"otro\"]', 28, 2),
+(37, 'Imagen del blog', 'Ingrese la imagen para el articulo', 1, 3, 500, 500, '[\"libros\",\"revistas\",\"e-book\",\"otro\"]', 28, 6),
+(38, 'Tags', 'Tags que apareceran en el articulo', 1, 5, 500, 500, '[\"nuevo\",\"innovador\",\"increible\"]', 28, 5);
 
 -- --------------------------------------------------------
 
@@ -87,7 +79,34 @@ CREATE TABLE `contenido` (
 
 INSERT INTO `contenido` (`id_contenido`, `nombre`, `url`, `fecha_creacion`, `fecha_modificacion`) VALUES
 (1, 'quienes somos', '/about-us', '2019-06-18', NULL),
-(2, 'detalle de libro', NULL, '2019-06-18', NULL);
+(2, 'libros', NULL, '2019-06-18', NULL),
+(5, 'contacto', '/', '2019-06-19', NULL),
+(6, 'Preguntas frecuentes', '/', '2019-06-19', NULL),
+(7, 'Slider principal', '/', '2019-06-19', NULL),
+(8, 'Blog', '/', '2019-06-19', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `detalle_seccion`
+--
+
+CREATE TABLE `detalle_seccion` (
+  `id_seccion` int(11) NOT NULL,
+  `id_campo` int(11) NOT NULL,
+  `valor` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `detalle_seccion`
+--
+
+INSERT INTO `detalle_seccion` (`id_seccion`, `id_campo`, `valor`) VALUES
+(14, 34, '\"e-book\"'),
+(14, 35, '\"Innovaci\\u00f3n  en libros electr\\u00f3nicos\"'),
+(14, 36, '\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type '),
+(14, 37, '\"desarrolla-aplicaciones-con-vuejs.pdf\"'),
+(14, 38, '[\"nuevo\",\"innovador\"]');
 
 -- --------------------------------------------------------
 
@@ -108,17 +127,12 @@ CREATE TABLE `plantilla` (
 --
 
 INSERT INTO `plantilla` (`id_plantilla`, `nombre`, `fecha_creacion`, `fecha_modificacion`, `id_contenido`) VALUES
-(5, 'Sin nombre', '2019-06-18', NULL, NULL),
-(6, 'Sin nombre', '2019-06-18', NULL, NULL),
-(7, 'Sin nombre', '2019-06-18', NULL, NULL),
-(8, 'Sin nombre', '2019-06-18', NULL, NULL),
-(9, 'Sin nombre', '2019-06-18', NULL, NULL),
-(10, 'Sin nombre', '2019-06-18', NULL, NULL),
-(11, 'Sin nombre', '2019-06-18', NULL, NULL),
-(13, 'detalle del libro', '2019-06-18', '2019-06-18', 2),
-(14, 'Sin nombre', '2019-06-18', NULL, NULL),
-(15, 'Sin nombre', '2019-06-18', NULL, NULL),
-(16, 'quienes osmo', '2019-06-18', '2019-06-18', 1);
+(23, 'Quienes somos', '2019-06-19', '2019-06-19', 1),
+(24, 'Sin nombre', '2019-06-19', NULL, NULL),
+(25, 'Estructura Preguntas Frecuentes', '2019-06-19', '2019-06-19', 6),
+(26, 'Sin nombre', '2019-06-19', NULL, NULL),
+(27, 'ES slider principal', '2019-06-19', '2019-06-19', 7),
+(28, 'ES Blog', '2019-06-19', '2019-06-19', 8);
 
 -- --------------------------------------------------------
 
@@ -131,6 +145,17 @@ CREATE TABLE `seccion` (
   `nombre` varchar(150) NOT NULL,
   `id_contenido` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `seccion`
+--
+
+INSERT INTO `seccion` (`id_seccion`, `nombre`, `id_contenido`) VALUES
+(2, 'Sección principal', 5),
+(3, 'Sección principal', 6),
+(4, 'Sección principal', 7),
+(5, 'Sección principal', 8),
+(14, 'Entrada', 8);
 
 -- --------------------------------------------------------
 
@@ -176,6 +201,13 @@ ALTER TABLE `contenido`
   ADD PRIMARY KEY (`id_contenido`);
 
 --
+-- Indices de la tabla `detalle_seccion`
+--
+ALTER TABLE `detalle_seccion`
+  ADD PRIMARY KEY (`id_seccion`,`id_campo`),
+  ADD KEY `FK_Campo` (`id_campo`);
+
+--
 -- Indices de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
@@ -186,7 +218,8 @@ ALTER TABLE `plantilla`
 -- Indices de la tabla `seccion`
 --
 ALTER TABLE `seccion`
-  ADD PRIMARY KEY (`id_seccion`);
+  ADD PRIMARY KEY (`id_seccion`),
+  ADD KEY `FK_Contenido` (`id_contenido`);
 
 --
 -- Indices de la tabla `tipo_campo`
@@ -202,25 +235,25 @@ ALTER TABLE `tipo_campo`
 -- AUTO_INCREMENT de la tabla `campo`
 --
 ALTER TABLE `campo`
-  MODIFY `id_campo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_campo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de la tabla `contenido`
 --
 ALTER TABLE `contenido`
-  MODIFY `id_contenido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_contenido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
-  MODIFY `id_plantilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_plantilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `seccion`
 --
 ALTER TABLE `seccion`
-  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_campo`
@@ -240,10 +273,23 @@ ALTER TABLE `campo`
   ADD CONSTRAINT `fk_campo_tipo_campo1` FOREIGN KEY (`id_tipo`) REFERENCES `tipo_campo` (`id_tipo`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Filtros para la tabla `detalle_seccion`
+--
+ALTER TABLE `detalle_seccion`
+  ADD CONSTRAINT `FK_Campo` FOREIGN KEY (`id_campo`) REFERENCES `campo` (`id_campo`),
+  ADD CONSTRAINT `FK_Seccion` FOREIGN KEY (`id_seccion`) REFERENCES `seccion` (`id_seccion`);
+
+--
 -- Filtros para la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
   ADD CONSTRAINT `fk_plantilla_contenido` FOREIGN KEY (`id_contenido`) REFERENCES `contenido` (`id_contenido`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Filtros para la tabla `seccion`
+--
+ALTER TABLE `seccion`
+  ADD CONSTRAINT `FK_Contenido` FOREIGN KEY (`id_contenido`) REFERENCES `contenido` (`id_contenido`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
