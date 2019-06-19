@@ -1,6 +1,6 @@
 <div class="row">
    <div class="col-12">
-      <h2>Estructuras</h2>
+      <h2>Plantillas</h2>
       <hr>
    </div>
    <div class="col">
@@ -9,7 +9,7 @@
 
    <div class="col-12">
       <br>
-      <h6>Listado de estructuras</h6>
+      <h6>Listado de plantillas</h6>
       <div class="table-responsive">
          <table class="table">
             <thead>

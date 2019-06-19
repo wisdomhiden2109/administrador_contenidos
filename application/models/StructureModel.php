@@ -103,4 +103,29 @@ class StructureModel extends CI_Model
          return Axios::response(400, "Error al crear la estructura");
       }
    }
+
+
+   public function createContent($request)
+   {
+      $data = array(
+         'nombre' => $request->nameContent,
+         'url' => '/',
+         'fecha_creacion' => date('Y-m-d')
+      );
+      $this->db->insert('contenido', $data);
+      $content = $this->db->insert_id();
+
+      $data = array(
+         'nombre' => 'Sección principal',
+         'id_contenido' => $content
+      );
+      $this->db->insert('seccion', $data);
+
+      if ($this->db->affected_rows() > 0) {
+         return Axios::response(200, "Se ha Creado el contenido con su sección principal satisfactoriamente");
+      } else {
+         return Axios::response(400, "Error al crear el contenido");
+      }
+   }
+
 }

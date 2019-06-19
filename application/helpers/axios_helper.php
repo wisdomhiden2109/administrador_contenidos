@@ -7,11 +7,11 @@ Class Axios{
    }
 
 
-   static function response($code,$error,$data = null)
+   static function response($code,$message,$data = null)
    {
       return array(
          'code' => $code,
-         'message' => $error,
+         'message' => $message,
          'data' => $data
       );
    }

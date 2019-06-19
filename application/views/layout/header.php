@@ -10,8 +10,20 @@
    <link rel="stylesheet" href="<?= base_url('assets/css/bootstrap.min.css') ?>">
    <link rel="stylesheet" href="<?= base_url('assets/font-awesome/css/all.css') ?>">
    <link rel="stylesheet" href="<?= base_url('assets/css/base.css') ?>">
+
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="<?= base_url('assets/js/jquery-3.3.1.slim.min.js') ?>"></script>
+   <script src="<?= base_url('assets/js/popper.min.js') ?>"></script>
+   <script src="<?= base_url('assets/js/bootstrap.min.js') ?>"></script>
+   <!-- Vue CDN -->
+   <script src="<?= base_url('assets/js/vue.js') ?>"></script>
+   <script src="<?= base_url('assets/js/axios.js')  ?>"></script>
+   
    <title>CI + VUE</title>
-   <script> var baseUrl = "<?= base_url() ;?>";</script>
+   <script>
+      var baseUrl = "<?= base_url(); ?>";
+   </script>
 </head>
 
 <body>
@@ -23,19 +35,15 @@
          </div>
 
          <ul class="list-unstyled components">
-            <p>Dummy Heading</p>
+            <p>Korban</p>
             <li class="active">
-               <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
-               <ul class="collapse list-unstyled" id="homeSubmenu">
-                  <li>
-                     <a href="#">Home 1</a>
-                  </li>
-                  <li>
-                     <a href="#">Home 2</a>
-                  </li>
-                  <li>
-                     <a href="#">Home 3</a>
-                  </li>
+               <a href="#homeContents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Contenidos</a>
+               <ul class="collapse list-unstyled" id="homeContents">
+                  <?php foreach ($contents as $content) : ?>
+                     <li>
+                        <a href="<?= base_url('contenido/' . $content->id_contenido) ?>"><?= ucwords($content->nombre) ?></a>
+                     </li>
+                  <?php endforeach; ?>
                </ul>
             </li>
             <li>
@@ -60,6 +68,17 @@
             </li>
             <li>
                <a href="#">Contact</a>
+            </li>
+            <li>
+               <a href="#admin" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrador</a>
+               <ul class="collapse list-unstyled" id="admin">
+                  <li>
+                     <a href="<?= base_url('contenidos') ?>">Contenidos</a>
+                  </li>
+                  <li>
+                     <a href="<?= base_url('plantilla') ?>">Plantillas</a>
+                  </li>
+               </ul>
             </li>
          </ul>
 

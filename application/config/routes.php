@@ -55,3 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['galeria'] = 'admin/galery';
+$route['contenidos'] = 'structure/contents';
+$route['plantilla'] = 'structure/index';
+
+$route['contenido/(:num)'] = 'pages/index/$1';
+$route['nueva-seccion/(:num)'] = 'pages/createSection/$1';

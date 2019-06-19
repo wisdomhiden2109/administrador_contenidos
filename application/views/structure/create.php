@@ -34,12 +34,12 @@
 
 <div class="row" id="app">
    <div class="col-12">
-      <h2><a href="<?= site_url('structure') ?>">Estructuras</a> - Crear</h2>
+      <h2><a href="<?= site_url('structure') ?>">Plantillas</a> - Crear</h2>
       <hr>
    </div>
    <div class="col">
       <button class="btn btn-info" data-toggle="modal" data-target="#modal-create"> Agregar campo </button>
-   </div>x
+   </div>
 
    <div class="col-12">
       <br>
@@ -171,3 +171,5 @@
       <!-- end modal -->
    </div>
 </div>
+
+<script src="<?= base_url('assets/js/fields.js') ?>"></script>

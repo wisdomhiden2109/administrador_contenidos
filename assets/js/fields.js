@@ -72,9 +72,8 @@ var app = new Vue({
             }).then((response) => {
                 if (response.data.code == 200) {
                     this.template = response.data.data;
-                } else {
-                    alert("Error al crear la estructura");
                 }
+                alert(response.data.message);
             });
         },
         updateFields() {

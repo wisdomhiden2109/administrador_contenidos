@@ -10,7 +10,7 @@
    <div class="col-md-9">
       <div class="row">
          <div class="col-md-3 p-2 content-image">
-            <form action="<?= base_url('galery/uploadFile') ?>" enctype="multipart/form-data" method="post"> 
+            <form action="<?= base_url('galery/uploadFile') ?>" enctype="multipart/form-data" method="post">
                <input type="file" name="fileUpload">
                <button type="submit">Subir archivo</button>
             </form>
@@ -34,3 +34,5 @@
 
    </div>
 </div>
+
+<script src="<?= base_url('assets/js/galery.js') ?>"></script>
