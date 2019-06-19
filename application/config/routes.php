@@ -59,4 +59,5 @@ $route['contenidos'] = 'structure/contents';
 $route['plantilla'] = 'structure/index';
 
 $route['contenido/(:num)'] = 'pages/index/$1';
-$route['nueva-seccion/(:num)'] = 'pages/createSection/$1';
+$route['nueva-entrada/(:num)'] = 'pages/newEntry/$1';
+$route['crear-entrada/(:num)'] = 'pages/createEntry/$1';

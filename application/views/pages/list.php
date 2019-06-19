@@ -18,7 +18,7 @@
       <hr>
    </div>
    <div class="col">
-      <a class="btn btn-info" href="<?= base_url('nueva-seccion/' . $activecontent) ?>"> Nueva sección </a>
+      <a class="btn btn-info" href="<?= base_url('nueva-entrada/' . $activeContent) ?>"> Nueva entrada </a>
    </div>
 
    <div class="col-12 sections">
