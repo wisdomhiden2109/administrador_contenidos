@@ -3,24 +3,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin extends CI_Controller {
 
-	
+	function __construct()
+	{
+		parent::__construct();
+		$this->load->model('StructureModel', 'structure');
+	}
+
+
 	public function index()
 	{
-		$this->load->view('layout/header');
+		$data = array(
+			'contents' => $this->structure->getContents(),
+		);
+		$this->load->view('layout/header',$data);
 		//$this->load->view('admin/login');
 		$this->load->view('layout/footer');
 	}
 
-	public function home()
+	public function dashboard()
 	{
-		$this->load->view('layout/header');
-		$this->load->view('home');
+		$data = array(
+			'contents' => $this->structure->getContents(),
+		);
+		$this->load->view('layout/header',$data);
+		$this->load->view('dashboard');
 		$this->load->view('layout/footer');
 	}
 
 	public function galery()
 	{
-		$this->load->view('layout/header');
+		$data = array(
+			'contents' => $this->structure->getContents(),
+		);
+		$this->load->view('layout/header',$data);
 		$this->load->view('galery');
 		$this->load->view('layout/footer');
 	}

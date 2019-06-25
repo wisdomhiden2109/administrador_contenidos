@@ -31,7 +31,7 @@
                <li class="list-group-item">
                   <label><?= $section->nombre ?></label>
                   <div class="actions float-right">
-                     <a class="btn btn-info"><i class="fas fa-edit"></i> Ver detalle</a>
+                     <a class="btn btn-info" href="<?= base_url('editar-entrada/' . $section->id_seccion) ?>"><i class="fas fa-edit"></i> Ver detalle</a>
                      <a class="btn btn-info"><i class="fas fa-edit"></i> Eliminar</a>
                   </div>
 

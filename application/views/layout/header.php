@@ -69,6 +69,7 @@
             <li>
                <a href="#">Contact</a>
             </li>
+            <?php if($this->session->userdata('user')->rol == 'administrador'): ?>
             <li>
                <a href="#admin" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrador</a>
                <ul class="collapse list-unstyled" id="admin">
@@ -80,6 +81,7 @@
                   </li>
                </ul>
             </li>
+            <?php endif; ?>
          </ul>
 
          <ul class="list-unstyled CTAs">
@@ -118,7 +120,7 @@
                         <a class="nav-link" href="#">Page</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Page</a>
+                        <a class="nav-link" href="<?= base_url('auth/logout') ?>">Salir</a>
                      </li>
                   </ul>
                </div>

@@ -1,13 +1,15 @@
 var app = new Vue({
     el: '#app',
     data: {
+        template: window.location.pathname.split('/').pop(),
         urlGetContents: baseUrl + '/structure/getContents',
         urlCreateStructure: baseUrl + '/structure/createStructure',
         urlGetFields: baseUrl + '/structure/getFields',
         urlCreateField: baseUrl + '/structure/createField',
+        urlGetDataTemplate: baseUrl + '/structure/getDataTemplate',
         contents: [],
         content: '',
-        template: 0,
+        contentId: 0,
         structureName: '',
         nameField: '',
         descriptionField: '',
@@ -68,7 +70,7 @@ var app = new Vue({
             axios.post(this.urlCreateStructure, {
                 template: this.template,
                 structureName: this.structureName,
-                content: this.content
+                content: this.contentId
             }).then((response) => {
                 if (response.data.code == 200) {
                     this.template = response.data.data;
@@ -86,5 +88,14 @@ var app = new Vue({
         axios.get(this.urlGetContents).then((response) => {
             this.contents = response.data;
         });
+
+        axios.get(this.urlGetDataTemplate + '/' + this.template).then((response) => {
+            this.fields = response.data.fields;
+            this.content = response.data.info.contenido;
+            this.contentId = response.data.info.id_contenido;
+            this.structureName = response.data.info.plantilla;
+            console.log(response.data);
+        });
+
     }
 })

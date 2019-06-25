@@ -36,7 +36,7 @@ class Structure extends CI_Controller
    {
       $data = array(
          'contents' => $this->structure->getContents(),
-         'typeFields' => $this->structure->getTypeFields()
+         'typeFields' => $this->structure-> getTypeFields()
       );
 
       $this->load->view('layout/header',$data);
@@ -47,10 +47,12 @@ class Structure extends CI_Controller
    public function edit()
    {
       $data = array(
-         'contents' => $this->structure->getContents()
+         'contents' => $this->structure->getContents(),
+         'typeFields' => $this->structure->getTypeFields()
       );
+
       $this->load->view('layout/header',$data);
-      $this->load->view('structure/edit');
+      $this->load->view('structure/edit',$data);
       $this->load->view('layout/footer');
    }
 
@@ -72,5 +74,10 @@ class Structure extends CI_Controller
 
    public function createContent(){
       echo json_encode($this->structure->createContent(Axios::getRequest()));
+   }
+
+   /* Info de la plantilla y sus campos */
+   public function getDataTemplate($idTemplate){
+      echo json_encode($this->structure-> getDataTemplate($idTemplate));
    }
 }

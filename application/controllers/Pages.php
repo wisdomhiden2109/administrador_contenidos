@@ -62,10 +62,19 @@ class Pages extends CI_Controller
       
       
       $this->pages->createEntry($idContent,$fields);
-      print_r($this->input->post());
-      print_r($_FILES);
-
+      redirect(base_url('contenido/'. $idContent));
+      //print_r($this->input->post());
+      //print_r($_FILES);
    }
-
    
+   public function editEntry($idEntry){
+      $data = array(
+         'contents' => $this->structure->getContents(),
+         'activeEntry' => $idEntry,
+         'layoutFields' => $this->pages->getDetailEntry($idEntry)
+      );
+      $this->load->view('layout/header', $data);
+      $this->load->view('pages/editEntry', $data);
+      $this->load->view('layout/footer');
+   }
 }

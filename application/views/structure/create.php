@@ -172,4 +172,4 @@
    </div>
 </div>
 
-<script src="<?= base_url('assets/js/fields.js') ?>"></script>
+<script src="<?= base_url('assets/js/fields/create.js') ?>"></script>

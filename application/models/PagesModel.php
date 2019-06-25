@@ -48,10 +48,10 @@ class PagesModel extends CI_Model
             $dataField[] = array(
                'id_seccion' => $id,
                'id_campo' => $field['id'],
-               'valor' => json_encode($field['value'])
+               'valor' => json_encode($field['value'], JSON_UNESCAPED_UNICODE)
             );
          }
-
+   
          $this->db->insert_batch('detalle_seccion', $dataField);
          
          if( $this->db->affected_rows() > 0){
@@ -62,4 +62,19 @@ class PagesModel extends CI_Model
       }
    }
 
+   public function getDetailEntry( $idEntry){
+      $result = $this->db->select("ds.valor, c.*, t.tipo as tipo_campo")
+         ->from("detalle_seccion ds")
+         ->join("campo c", "c.id_campo = ds.id_campo")
+         ->join("tipo_campo t", "t.id_tipo = c.id_tipo")
+         ->where("ds.id_seccion", $idEntry)
+         ->order_by("c.orden", 'ASC')
+         ->get();
+
+      if ($result->num_rows() > 0) {
+         return $result->result();
+      } else {
+         redirect(base_url(''));
+      }
+   }
 }

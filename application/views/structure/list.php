@@ -30,7 +30,7 @@
                      <td><?= $template->fecha_creacion ?></td>
                      <td><?= $template->fecha_modificacion ?></td>
                      <td><?= ($template->pagina == '') ? 'Ninguna' : $template->pagina; ?></td>
-                     <td><a href="<?= site_url('structure/edit') ?>"><i class="fas fa-edit"></i></a></td>
+                     <td><a href="<?= site_url('structure/edit/' . $template->id_plantilla) ?>"><i class="fas fa-edit"></i></a></td>
                   </tr>
                <?php endforeach; ?>
             </tbody>

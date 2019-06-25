@@ -128,4 +128,26 @@ class StructureModel extends CI_Model
       }
    }
 
+   public function getDataTemplate($idTemplate){
+      $result = $this->db->select("c.*,t.nombre as tipo")
+         ->from("campo c")
+         ->join("tipo_campo t", "t.id_tipo = c.id_tipo")
+         ->where("c.id_plantilla", $idTemplate)
+         ->order_by("c.orden", "asc")
+         ->get()
+         ->result();
+
+      $info = $this->db->select("p.nombre as plantilla,co.id_contenido, co.nombre as contenido")
+         ->from("plantilla p")
+         ->join("contenido co", "co.id_contenido = p.id_contenido")
+         ->where("p.id_plantilla", $idTemplate)
+         ->limit(1)
+         ->get()
+         ->row();
+
+      $data['fields'] = $result;
+      $data['info'] = $info;
+
+      return $data;
+   }
 }
