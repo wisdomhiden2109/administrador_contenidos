@@ -66,6 +66,6 @@ Class Images {
          return null;
       }
 
-      return $CI->upload->data()['file_name'];
+      return $CI->upload->data();
    }
 }

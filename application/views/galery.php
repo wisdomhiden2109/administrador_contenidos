@@ -88,16 +88,12 @@
             <h3 class="text-center pt-4">Fotos recientes</h3>
             <hr class="border-generic">
             <div class="row">
-               <?php for ($i = 1; $i <= 6; $i++) {
-                  $image = base_url('assets/uploads/' . 'libro' . $i . '.jpg');
-                  ?>
-                  <div class="col-md-4 mt-3">
-                     <div class="image-recent" style="background-image:url('<?= $image ?>')"></div>
-                  </div>
-               <?php } ?>
+               <div class="col-md-4 mt-3" v-for="file in lastFiles.data">
+                  <div class="image-recent" v-bind:style="{ 'background-image': 'url(' + backgroundImage(file) + ')' }"></div>
+               </div>
             </div>
             <br>
-            <div class="text-right">
+            <div class=" text-right">
                <button class="btn btn-generic">Ver todas mis fotos</button>
             </div>
          </div>
@@ -109,15 +105,15 @@
             <br>
             <div class="row justify-content-center">
                <div class="col-4">
-                  <div class="image-recent" style="background-image:url('http://localhost/vue+ci/administrador_contenidos/assets/uploads/libro1.jpg')"></div>
+                  <div class="image-recent" v-bind:style="{ 'background-image': 'url(' + backgroundImage(previewImage) + ')' }"></div>
                </div>
             </div>
             <br>
             <ul class="image-properties">
-               <li class="dimentions mt-2"> <b> Fecha de carga: </b> 20-04-2019 </li>
-               <li class="dimentions mt-2"> <b> Dimensiones: </b> 300 x 450 px </li>
-               <li class="dimentions mt-2"> <b> Tamaño: </b> 202 KB </li>
-               <li class="dimentions mt-2"> <b> Formato: </b> PNG </li>
+               <li class="dimentions mt-2"> <b> Fecha de carga: </b> {{ previewImage.fecha_carga }} </li>
+               <li class="dimentions mt-2"> <b> Dimensiones: </b> {{ previewImage.dimensiones }} </li>
+               <li class="dimentions mt-2"> <b> Tamaño: </b> {{ previewImage.peso }} </li>
+               <li class="dimentions mt-2"> <b> Formato: </b> {{ previewImage.formato }} </li>
             </ul>
          </div>
       </div>

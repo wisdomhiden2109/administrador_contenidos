@@ -14,4 +14,9 @@ class Galery extends CI_Controller
    {
       echo json_encode($this->galery->uploadImage($_FILES));
    }
+
+   public function getLastFiles()
+   {
+      echo json_encode($this->galery->getLastFiles());
+   }
 }
