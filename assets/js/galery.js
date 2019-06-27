@@ -46,6 +46,9 @@ var galery = new Vue({
                 this.lastFiles = response.data;
             });
         },
+        loadProperties(file) {
+            this.previewImage = file;
+        },
         backgroundImage(file) {
             return baseUrl + '/assets/uploads/' + file.nombre;
         }

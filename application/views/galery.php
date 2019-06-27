@@ -89,7 +89,7 @@
             <hr class="border-generic">
             <div class="row">
                <div class="col-md-4 mt-3" v-for="file in lastFiles.data">
-                  <div class="image-recent" v-bind:style="{ 'background-image': 'url(' + backgroundImage(file) + ')' }"></div>
+                  <div class="image-recent" v-bind:style="{ 'background-image': 'url(' + backgroundImage(file) + ')' }" @click="loadProperties(file)"></div>
                </div>
             </div>
             <br>
