@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2019 a las 23:27:03
+-- Tiempo de generación: 28-06-2019 a las 00:54:05
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -94,19 +94,53 @@ INSERT INTO `contenido` (`id_contenido`, `nombre`, `url`, `fecha_creacion`, `fec
 CREATE TABLE `detalle_seccion` (
   `id_seccion` int(11) NOT NULL,
   `id_campo` int(11) NOT NULL,
-  `valor` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `valor` varchar(200) COLLATE utf8_spanish_ci DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `detalle_seccion`
 --
 
 INSERT INTO `detalle_seccion` (`id_seccion`, `id_campo`, `valor`) VALUES
-(14, 34, '\"e-book\"'),
-(14, 35, '\"Innovaci\\u00f3n  en libros electr\\u00f3nicos\"'),
-(14, 36, '\"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type '),
-(14, 37, '\"desarrolla-aplicaciones-con-vuejs.pdf\"'),
-(14, 38, '[\"nuevo\",\"innovador\"]');
+(23, 32, '\"logo_premiosonline.png\"'),
+(23, 33, '\"premiosonline.com\"'),
+(24, 34, '\"e-book\"'),
+(24, 35, '\"titulo de prueba\"'),
+(24, 36, '\"contenido de prueba\"'),
+(24, 37, '\"logo.png\"'),
+(24, 38, '[\"nuevo\",\"increible\"]');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `galeria`
+--
+
+CREATE TABLE `galeria` (
+  `id_archivo` int(11) NOT NULL,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL,
+  `dimensiones` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `formato` varchar(15) COLLATE utf8_spanish_ci NOT NULL,
+  `peso` varchar(20) COLLATE utf8_spanish_ci NOT NULL,
+  `fecha_carga` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `galeria`
+--
+
+INSERT INTO `galeria` (`id_archivo`, `nombre`, `dimensiones`, `formato`, `peso`, `fecha_carga`) VALUES
+(1, 'andino3.jpg', '314 X 159', 'image/jpeg', '19.45', '2019-06-27'),
+(2, 'descarga3.jpg', '300 X 168', 'image/jpeg', '15.12', '2019-06-27'),
+(3, 'kubo1.png', '600 X 446', 'image/png', '300.92', '2019-06-27'),
+(4, 'andino4.jpg', '314 X 159', 'image/jpeg', '19.45', '2019-06-27'),
+(5, 'descarga4.jpg', '300 X 168', 'image/jpeg', '15.12', '2019-06-27'),
+(6, 'kubo2.png', '600 X 446', 'image/png', '300.92', '2019-06-27'),
+(7, 'descarga5.jpg', '300 X 168', 'image/jpeg', '15.12', '2019-06-27'),
+(8, 'andino5.jpg', '314 X 159', 'image/jpeg', '19.45', '2019-06-27'),
+(9, 'descarga6.jpg', '300 X 168', 'image/jpeg', '15.12', '2019-06-27'),
+(10, 'andino6.jpg', '314 X 159', 'image/jpeg', '19.45', '2019-06-27'),
+(11, 'descarga7.jpg', '300 X 168', 'image/jpeg', '15.12', '2019-06-28');
 
 -- --------------------------------------------------------
 
@@ -132,7 +166,9 @@ INSERT INTO `plantilla` (`id_plantilla`, `nombre`, `fecha_creacion`, `fecha_modi
 (25, 'Estructura Preguntas Frecuentes', '2019-06-19', '2019-06-19', 6),
 (26, 'Sin nombre', '2019-06-19', NULL, NULL),
 (27, 'ES slider principal', '2019-06-19', '2019-06-19', 7),
-(28, 'ES Blog', '2019-06-19', '2019-06-19', 8);
+(28, 'ES Blog 1', '2019-06-19', '2019-06-25', 8),
+(29, 'Sin nombre', '2019-06-25', NULL, NULL),
+(30, 'Sin nombre', '2019-06-25', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -155,7 +191,17 @@ INSERT INTO `seccion` (`id_seccion`, `nombre`, `id_contenido`) VALUES
 (3, 'Sección principal', 6),
 (4, 'Sección principal', 7),
 (5, 'Sección principal', 8),
-(14, 'Entrada', 8);
+(14, 'Entrada', 8),
+(15, 'Entrada', 8),
+(16, 'Entrada', 8),
+(17, 'Entrada', 8),
+(18, 'Entrada', 8),
+(19, 'Entrada', 8),
+(20, 'Entrada', 8),
+(21, 'Entrada', 8),
+(22, 'Entrada', 8),
+(23, 'Entrada', 7),
+(24, 'Entrada', 8);
 
 -- --------------------------------------------------------
 
@@ -181,6 +227,27 @@ INSERT INTO `tipo_campo` (`id_tipo`, `nombre`, `tipo`, `imagen`) VALUES
 (4, 'opción única', 'radio', NULL),
 (5, 'opción múltiple', 'checkbox', NULL),
 (6, 'imagen', 'img', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `clave` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
+  `rol` varchar(20) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `usuario`, `clave`, `rol`) VALUES
+(1, 'admin', '123', 'administrador'),
+(2, 'cliente', '12345', 'cliente');
 
 --
 -- Índices para tablas volcadas
@@ -208,6 +275,12 @@ ALTER TABLE `detalle_seccion`
   ADD KEY `FK_Campo` (`id_campo`);
 
 --
+-- Indices de la tabla `galeria`
+--
+ALTER TABLE `galeria`
+  ADD PRIMARY KEY (`id_archivo`);
+
+--
 -- Indices de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
@@ -228,6 +301,12 @@ ALTER TABLE `tipo_campo`
   ADD PRIMARY KEY (`id_tipo`);
 
 --
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -244,22 +323,34 @@ ALTER TABLE `contenido`
   MODIFY `id_contenido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT de la tabla `galeria`
+--
+ALTER TABLE `galeria`
+  MODIFY `id_archivo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
-  MODIFY `id_plantilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id_plantilla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `seccion`
 --
 ALTER TABLE `seccion`
-  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_seccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_campo`
 --
 ALTER TABLE `tipo_campo`
   MODIFY `id_tipo` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
