@@ -24,6 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://'.$_SERVER['SERVER_NAME'].'/vue+ci/administrador_contenidos';
+$config['upload'] = $config['base_url'].'/assets/uploads';
 
 /*
 |--------------------------------------------------------------------------

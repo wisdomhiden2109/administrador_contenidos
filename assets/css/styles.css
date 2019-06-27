@@ -1,0 +1,25 @@
+ /*General Transitions*/
+ 
+ .btn-generic:hover {
+     transition-duration: 0.5s;
+ }
+ /*Hide element*/
+ 
+ .show {
+     visibility: visible;
+ }
+ 
+ .border-generic {
+     height: 1px;
+     background: linear-gradient(to left, #0962AA, #01175e, #01A7f2);
+ }
+ 
+ .btn-generic {
+     background: linear-gradient(to left, #0962AA, #01A7f2);
+     color: #fff;
+ }
+ 
+ .btn-generic:hover {
+     opacity: 0.9;
+     color: #fff;
+ }

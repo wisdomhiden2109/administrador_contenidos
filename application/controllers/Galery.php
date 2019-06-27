@@ -4,12 +4,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Galery extends CI_Controller
 {
 
+   function __construct()
+   {
+      parent::__construct();
+      $this->load->model('GaleryModel', 'galery');
+   }
+
    public function uploadFile()
    {
-      $fullPath = Images::upload($_FILES['fileUpload']); 
-      if(!is_null($fullPath)){
-         //Images::resize($fullPath);
-         Images::crop($fullPath);
-      }
+      echo json_encode($this->galery->uploadImage($_FILES));
    }
 }

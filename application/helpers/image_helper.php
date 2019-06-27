@@ -50,7 +50,7 @@ Class Images {
    }
 
 
-   public static function upload()
+   public static function upload($fileName)
    {
       $config['upload_path']          = './assets/uploads/';
       $config['allowed_types']        = 'gif|jpg|png';
@@ -61,11 +61,11 @@ Class Images {
       $CI = &get_instance();
       $CI->upload->initialize($config);
 
-      if (!$CI->upload->do_upload('fileUpload')) {
+      if (!$CI->upload->do_upload($fileName)) {
          //$error = array('error' => $CI->upload->display_errors());
          return null;
       }
 
-      return $CI->upload->data()['full_path'];
+      return $CI->upload->data()['file_name'];
    }
 }
