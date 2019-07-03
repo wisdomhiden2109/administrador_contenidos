@@ -64,13 +64,13 @@ class PagesModel extends CI_Model
 
    public function getDetailEntry( $idEntry){
       $result = $this->db->select("ds.valor, c.*, t.tipo as tipo_campo")
-         ->from("detalle_seccion ds")
-         ->join("campo c", "c.id_campo = ds.id_campo")
+         ->from("campo c")
+         ->join("detalle_seccion ds", "c.id_campo = ds.id_campo","left")
          ->join("tipo_campo t", "t.id_tipo = c.id_tipo")
          ->where("ds.id_seccion", $idEntry)
          ->order_by("c.orden", 'ASC')
          ->get();
-
+      echo $this->db->last_query();
       if ($result->num_rows() > 0) {
          return $result->result();
       } else {

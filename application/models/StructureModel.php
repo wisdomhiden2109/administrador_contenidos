@@ -65,6 +65,31 @@ class StructureModel extends CI_Model
          return Axios::response(400,"Error al crear el campo");
       }
    }
+
+   public function updateField($request)
+   {
+     
+      $data = array(
+         'nombre' => $request->nameField,
+         'descripcion' => $request->descriptionField,
+         'requerido' => ($request->requiredField) ? 1 : 0,
+         'orden' => $request->orderField,
+         'ancho' => $request->width,
+         'alto' => $request->height,
+         'opciones' => json_encode($request->optionsCreate),
+         'id_plantilla' => $request->template,
+         'id_tipo' => $request->typeField,
+      );
+      
+      $this->db->where("id_campo",$request->idField);
+      $this->db->update('campo', $data);
+
+      if ($this->db->affected_rows() > 0) {
+         return Axios::response(200, "Campo actualizado satisfactoriamente", $request->template);
+      } else {
+         return Axios::response(400, "Error al actualizar el campo");
+      }
+   }
    
    public function getFields($template){
       $result = $this->db->select("c.*,t.nombre as tipo")
@@ -110,6 +135,7 @@ class StructureModel extends CI_Model
       $data = array(
          'nombre' => $request->nameContent,
          'url' => '/',
+         'menu_principal' => $request->mainMenu,
          'fecha_creacion' => date('Y-m-d')
       );
       $this->db->insert('contenido', $data);
@@ -125,6 +151,24 @@ class StructureModel extends CI_Model
          return Axios::response(200, "Se ha Creado el contenido con su sección principal satisfactoriamente");
       } else {
          return Axios::response(400, "Error al crear el contenido");
+      }
+   }
+
+   public function updateContent($request){
+      $data = array(
+         'nombre' => $request->nameContent,
+         'url' => '/',
+         'menu_principal' => $request->mainMenu,
+         'fecha_modificacion' => date('Y-m-d')
+      );
+
+      $this->db->where('id_contenido', $request->idContent);
+      $this->db->update('contenido', $data);
+
+      if ($this->db->affected_rows() > 0) {
+         return Axios::response(200, "Se ha Actualizado el contenido satisfactoriamente");
+      } else {
+         return Axios::response(400, "Error al actualizar el contenido");
       }
    }
 

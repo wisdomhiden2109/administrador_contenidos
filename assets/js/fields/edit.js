@@ -7,6 +7,7 @@ var app = new Vue({
         urlGetFields: baseUrl + '/structure/getFields',
         urlCreateField: baseUrl + '/structure/createField',
         urlGetDataTemplate: baseUrl + '/structure/getDataTemplate',
+        urlUpdateField: baseUrl + '/structure/updateField',
         contents: [],
         content: '',
         contentId: 0,
@@ -22,7 +23,11 @@ var app = new Vue({
         width: 0,
         height: 0,
         optionsCreate: [],
-        fields: []
+        fields: [],
+        // Edit
+        activeEditModal: false,
+        idField: null, //Id para actualizar campo
+
     },
     methods: {
         enableOptions() {
@@ -59,6 +64,7 @@ var app = new Vue({
                 if (response.data.code == 200) {
                     this.template = response.data.data;
                     this.updateFields();
+                    this.resetFormField();
                     $("#modal-create").modal('hide');
                 } else {
                     alert("Error al crear el template");
@@ -82,6 +88,71 @@ var app = new Vue({
             axios.get(this.urlGetFields + '/' + this.template).then((response) => {
                 this.fields = response.data;
             });
+        },
+        editField(field) {
+            console.log(field);
+            this.idField = field.id_campo;
+            this.activeEditModal = true;
+            this.nameField = field.nombre;
+            this.descriptionField = field.descripcion;
+            this.typeField = field.id_tipo;
+            this.requiredField = field.requerido;
+            this.orderField = field.orden;
+            this.width = field.ancho;
+            this.height = field.alto;
+
+            switch (field.id_tipo) {
+                case ("3" || "4"):
+                    this.activateOptions = 1;
+                    this.optionsCreate = field.options;
+                    break;
+
+                case "6":
+                    this.activateOptionsImage = 1;
+                    break;
+
+                default:
+                    this.activateOptions = 0;
+                    this.activateOptionsImage = 0;
+                    break;
+            }
+        },
+        updateField() {
+            axios.post(this.urlUpdateField, {
+                idField: this.idField,
+                nameField: this.nameField,
+                descriptionField: this.descriptionField,
+                requiredField: this.requiredField,
+                optionsCreate: this.optionsCreate,
+                width: this.width,
+                height: this.height,
+                orderField: this.orderField,
+                template: this.template,
+                typeField: this.typeField
+            }).then((response) => {
+                if (response.data.code == 200) {
+                    this.template = response.data.data;
+                    this.updateFields();
+                    this.resetFormField();
+                    this.activeEditModal = false;
+                } else {
+                    alert("Error inesperado");
+                    this.activeEditModal = false;
+                }
+            });
+        },
+        resetFormField() {
+            this.nameField = '';
+            this.descriptionField = '';
+            this.typeField = 1;
+            this.requiredField = false;
+            this.orderField = 0;
+            this.activateOptions = 0;
+            this.activateOptionsImage = 0;
+            this.option = '';
+            this.width = 0;
+            this.height = 0;
+            this.optionsCreate = [];
         }
     },
     mounted: function() {

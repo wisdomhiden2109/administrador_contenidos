@@ -23,3 +23,10 @@
      opacity: 0.9;
      color: #fff;
  }
+ /*Modal*/
+ 
+ .showModal {
+     visibility: visible !important;
+     display: block !important;
+     opacity: 1 !important;
+ }

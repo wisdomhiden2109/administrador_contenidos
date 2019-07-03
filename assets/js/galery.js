@@ -3,15 +3,18 @@ var galery = new Vue({
     data: {
         urlUploadFile: baseUrl + '/galery/uploadFile',
         urlGetLastFiles: baseUrl + '/galery/getLastFiles',
+        urlGetFiles: baseUrl + '/galery/getFiles',
         backgroundUpload: 'assets/img/upload_img.png',
         classLoading: 'loading',
         uploadFile: false,
         selectedFile: null,
         lastFiles: [],
+        files: [],
         previewImage: {
             'nombre': '',
             'fecha_carga': 'Y-m-d'
-        }
+        },
+        activeModalGalery: false,
     },
     methods: {
         onFileChanged(file) {
@@ -51,6 +54,12 @@ var galery = new Vue({
         },
         backgroundImage(file) {
             return baseUrl + '/assets/uploads/' + file.nombre;
+        },
+        openGalery() {
+            this.activeModalGalery = true;
+            axios.get(this.urlGetFiles).then((response) => {
+                this.files = response.data;
+            });
         }
     },
     mounted: function() {

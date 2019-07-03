@@ -50,6 +50,17 @@
       flex-direction: column;
       visibility: hidden;
    }
+
+   /*Modal galery*/
+   .content-image-modal-galery .image-galery {
+      width: 100%;
+      height: 130px;
+      background-position: center;
+      background-size: cover;
+      border: solid 1px lightgray;
+      border-radius: 5px;
+      cursor: pointer;
+   }
 </style>
 
 
@@ -94,7 +105,7 @@
             </div>
             <br>
             <div class=" text-right">
-               <button class="btn btn-generic">Ver todas mis fotos</button>
+               <button class="btn btn-generic" data-toggle="modal" data-target="#modal-galery" @click="openGalery()">Ver todas mis fotos</button>
             </div>
          </div>
       </div>
@@ -118,6 +129,31 @@
          </div>
       </div>
    </div>
+
+   <!-- modal galery -->
+   <div class="modal fade" id="modal-galery" tabindex="-1" role="dialog" aria-labelledby="modal-galery-title" aria-hidden="true" :class="{showModal: activeModalGalery}">
+      <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="modal-galery-title">Galeria</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="activeModalGalery = false;">
+                  <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <div class="row">
+                  <div class="col-md-3 mt-3 content-image-modal-galery" v-for="file in files.data">
+                     <div class="image-galery" v-bind:style="{ 'background-image': 'url(' + backgroundImage(file) + ')' }" @click="loadProperties(file)"></div>
+                  </div>
+               </div>
+            </div>
+            <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal" @click="activeModalGalery = false;">Cerrar galeria</button>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- end modal galery -->
 </div>
 
 

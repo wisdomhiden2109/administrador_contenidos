@@ -1,5 +1,67 @@
-/* Made with love by Mutiullah Samim*/
+@font-face {
+    font-family: futura;
+    src: url(../fonts/futura.ttf);
+}
 
+@font-face {
+    font-family: futura2;
+    src: url(../fonts/futura2.ttf);
+}
+
+html,
+body {
+    height: 100%;
+    font-family: futura;
+}
+
+.recovery {
+    color: #0288D1;
+}
+
+.content-login {
+    height: 100%;
+}
+
+.intro-login {
+    width: 100%;
+    height: 100%;
+    background: #03A9F4;
+}
+
+.intro-login {
+    color: #fff;
+    font-size: 20px;
+    background: linear-gradient(to right, #0288D1, #49ccf9);
+}
+
+.logo {
+    height: 10%;
+}
+
+.intro-login .slide-login {
+    height: 90%;
+}
+
+.slide-login img {
+    width: 100%;
+}
+
+.form-login {
+    height: 100%;
+}
+
+h3 {
+    color: #0288D1;
+}
+
+.button-login {
+    background: linear-gradient(to right, #0288D1, #49ccf9);
+    border: none;
+    padding: 15px;
+}
+
+
+/*
 @import url('https://fonts.googleapis.com/css?family=Numans');
 html,
 body {
@@ -84,4 +146,4 @@ input:focus {
 
 .links a {
     margin-left: 4px;
-}
+}*/

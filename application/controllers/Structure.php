@@ -60,6 +60,10 @@ class Structure extends CI_Controller
      echo json_encode($this->structure->createField( Axios::getRequest()));
    }
 
+   public function updateField(){
+      echo json_encode($this->structure->updateField(Axios::getRequest()));
+   }
+
    public function getFields($template){
       echo json_encode($this->structure-> getFields($template));
    }
@@ -74,6 +78,10 @@ class Structure extends CI_Controller
 
    public function createContent(){
       echo json_encode($this->structure->createContent(Axios::getRequest()));
+   }
+
+   public function updateContent(){
+      echo json_encode($this->structure-> updateContent(Axios::getRequest()));
    }
 
    /* Info de la plantilla y sus campos */

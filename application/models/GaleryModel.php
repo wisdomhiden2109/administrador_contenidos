@@ -27,16 +27,30 @@ class GaleryModel extends CI_Model
       return Axios::response(201, "Error al intentar cargar la imagen");
    }
 
-   public function getLastFiles(){
+   public function getFiles(){
       $this->db->select("*");
       $this->db->from("galeria");
       $this->db->order_by("id_archivo","DESC");
-      $this->db->limit(6);
       $result = $this->db->get();
 
       if( $result->num_rows() > 0){
          return Axios::response(200, "OK", $result->result());
       }else{
+         return Axios::response(201, "0 records");
+      }
+   }
+
+   public function getLastFiles()
+   {
+      $this->db->select("*");
+      $this->db->from("galeria");
+      $this->db->order_by("id_archivo", "DESC");
+      $this->db->limit(6);
+      $result = $this->db->get();
+
+      if ($result->num_rows() > 0) {
+         return Axios::response(200, "OK", $result->result());
+      } else {
          return Axios::response(201, "0 records");
       }
    }
