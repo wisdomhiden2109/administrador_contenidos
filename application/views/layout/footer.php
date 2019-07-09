@@ -7,6 +7,10 @@
             $('#sidebarCollapse').on('click', function() {
                $('#sidebar').toggleClass('active');
             });
+
+            $(".popover-generic").popover({
+               trigger: "hover"
+            });
          });
       </script>
       </body>

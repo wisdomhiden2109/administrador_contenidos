@@ -55,6 +55,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['korban'] = 'admin/dashboard';
 $route['galeria'] = 'admin/galery';
+$route['contactos'] = 'admin/contact';
+$route['configuracion'] = 'admin/configuration';
 $route['contenidos'] = 'structure/contents';
 $route['plantilla'] = 'structure/index';
 

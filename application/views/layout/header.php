@@ -19,7 +19,7 @@
    <!-- Vue CDN -->
    <script src="<?= base_url('assets/js/vue.js') ?>"></script>
    <script src="<?= base_url('assets/js/axios.js')  ?>"></script>
-   
+
    <title>CI + VUE</title>
    <script>
       var baseUrl = "<?= base_url(); ?>";
@@ -37,7 +37,10 @@
          <ul class="list-unstyled components">
             <p>Korban</p>
             <li class="active">
-               <a href="#homeContents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Contenidos</a>
+               <a href="#homeContents" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                  <i class="fas fa-file-contract icon-menu"></i>
+                  Contenidos
+               </a>
                <ul class="collapse list-unstyled" id="homeContents">
                   <?php foreach ($contents as $content) : ?>
                      <li>
@@ -47,20 +50,45 @@
                </ul>
             </li>
             <li>
-               <a href="<?= site_url('galeria') ?>">Galeria</a>
+               <a href="<?= site_url('galeria') ?>">
+                  <i class="fas fa-photo-video icon-menu"></i>
+                  Galeria
+               </a>
             </li>
-            <?php if($this->session->userdata('user')->rol == 'administrador'): ?>
             <li>
-               <a href="#admin" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrador</a>
-               <ul class="collapse list-unstyled" id="admin">
-                  <li>
-                     <a href="<?= base_url('contenidos') ?>">Contenidos</a>
-                  </li>
-                  <li>
-                     <a href="<?= base_url('plantilla') ?>">Plantillas</a>
-                  </li>
-               </ul>
+               <a href="<?= site_url('contactos') ?>">
+                  <i class="fas fa-envelope-open icon-menu"></i>
+                  Contactos web
+               </a>
             </li>
+            <li>
+               <a href="<?= site_url('configuracion') ?>">
+                  <i class="fas fa-cogs icon-menu"></i>
+                  Configuración
+               </a>
+            </li>
+
+            <li>
+               <a href="<?= base_url('auth/logout') ?>">
+                  <i class="fas fa-power-off icon-menu"></i>
+                  Cerrar sesión
+               </a>
+            </li>
+
+
+
+            <?php if ($this->session->userdata('user')->rol == 'administrador') : ?>
+               <li>
+                  <a href="#admin" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Administrador</a>
+                  <ul class="collapse list-unstyled" id="admin">
+                     <li>
+                        <a href="<?= base_url('contenidos') ?>">Contenidos</a>
+                     </li>
+                     <li>
+                        <a href="<?= base_url('plantilla') ?>">Plantillas</a>
+                     </li>
+                  </ul>
+               </li>
             <?php endif; ?>
          </ul>
       </nav>
@@ -71,27 +99,33 @@
          <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
 
-               <button type="button" id="sidebarCollapse" class="btn btn-info">
+               <button type="button" id="sidebarCollapse" class="btn btn-generic">
                   <i class="fas fa-align-left"></i>
-                  <span>Toggle Sidebar</span>
                </button>
+               <div class="welcome">Bienvenido, fulanito</div>
                <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <i class="fas fa-align-justify"></i>
                </button>
 
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="nav navbar-nav ml-auto">
-                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Page</a>
+                     <li class="nav-item">
+                        <a class="nav-link popover-generic" href="<?= site_url('contactos') ?>" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Revisa los mensajes que has recibido por parte de tus clientes.">
+                           <i class="fas fa-envelope-open icon-generic tooltip-generic"></i>
+                        </a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Page</a>
+                        <a class="nav-link popover-generic" href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Notificaciones en tiempo real, actualización y ajustes generales de KORBAN.">
+                           <i class="fas fa-bell icon-generic"></i>
+                        </a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Page</a>
+                        <a class="nav-link popover-generic" href="#" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Configuración general.">
+                           <i class="fas fa-cog icon-generic"></i>
+                        </a>
                      </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('auth/logout') ?>">Salir</a>
+                     <li class="nav-item border-left">
+                        <a class="nav-link" href="<?= base_url('auth/logout') ?>">salir <i class="fas fa-sign-out-alt icon-generic"></i></a>
                      </li>
                   </ul>
                </div>

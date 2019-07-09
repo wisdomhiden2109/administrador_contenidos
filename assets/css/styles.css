@@ -11,11 +11,11 @@
  
  .border-generic {
      height: 1px;
-     background: linear-gradient(to left, #0962AA, #01175e, #01A7f2);
+     background: linear-gradient(to left, #7b68ee, #49ccf9);
  }
  
  .btn-generic {
-     background: linear-gradient(to left, #0962AA, #01A7f2);
+     background: #7b68ee;
      color: #fff;
  }
  
@@ -29,4 +29,23 @@
      visibility: visible !important;
      display: block !important;
      opacity: 1 !important;
+ }
+ 
+ .icon-generic {
+     color: #03A9F4;
+     font-size: 20px;
+ }
+ 
+ .tooltip-inner {
+     background: #03A9F4 !important;
+     color: #fff !important;
+ }
+ 
+ .tooltip>.arrow:before {
+     border-bottom-color: #03A9F4;
+ }
+ 
+ .welcome {
+     font-size: 20px;
+     margin-left: 20px;
  }

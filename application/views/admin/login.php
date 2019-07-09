@@ -17,8 +17,8 @@
 <body>
 
    <div class="row content-login m-0">
-      <div class="col-6 intro-login">
-         <div class="logo">Korban</div>
+      <div class="col-6 intro-login d-none d-sm-block">
+         <div class="logo"><img src="<?= base_url('assets/img/logo_blanco.png') ?>" style="width:150px; margin-top:15px;"></div>
          <div class="row align-items-center justify-content-center slide-login">
             <div class="col-sm-6 text-center">
                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla cupiditate eius provident et dignissimos accusantium est!</p>
@@ -27,7 +27,7 @@
             </div>
          </div>
       </div>
-      <div class="col-6">
+      <div class="col-12 col-sm-6">
          <div class="row align-items-center justify-content-center form-login">
             <div class="col-sm-6">
                <h3>Iniciar sesión</h3>
@@ -82,12 +82,12 @@
             <div class="card-body">
                <form action="<?= base_url('auth/login') ?>" method="post">
                   <?php if ($this->session->userdata('error')) : ?>
-                                                                           <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                                              <?= $this->session->userdata('error') ?>
-                                                                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                                 <span aria-hidden="true">&times;</span>
-                                                                              </button>
-                                                                           </div>
+                                                                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                                       <?= $this->session->userdata('error') ?>
+                                                                                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                                          <span aria-hidden="true">&times;</span>
+                                                                                       </button>
+                                                                                    </div>
                   <?php endif; ?>
                   <div class="input-group form-group">
                      <div class="input-group-prepend">
