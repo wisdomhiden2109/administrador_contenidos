@@ -56,6 +56,7 @@ class Admin extends CI_Controller {
 	public function configuration()
 	{
 		$data = array(
+			'user' => $this->configuration->getUser(),
 			'configuration' => $this->configuration->getConfiguration()
 		);
 		$this->load->view('layout/header', $data);
