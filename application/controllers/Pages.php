@@ -58,10 +58,13 @@ class Pages extends CI_Controller
       $i=0;
       $filesKeys = array_keys($_FILES);
       foreach ($_FILES as $file ) {
-         $fields[] = array(
-            'id' => $filesKeys[$i],
-            'value' => $file['name']
-         );
+         $file = Images::upload($filesKeys[$i]);
+         if (!is_null($file)) {
+            $fields[] = array(
+               'id' => $filesKeys[$i],
+               'value' => $file['file_name']
+            );
+         }
          $i++;
       }
       
@@ -92,10 +95,13 @@ class Pages extends CI_Controller
       $i = 0;
       $filesKeys = array_keys($_FILES);
       foreach ($_FILES as $file) {
-         $fields[] = array(
-            'id' => $filesKeys[$i],
-            'value' => $file['name']
-         );
+         $file = Images::upload($filesKeys[$i]);
+         if (!is_null($file)) {
+            $fields[] = array(
+               'id' => $filesKeys[$i],
+               'value' => $file['file_name']
+            );
+         }
          $i++;
       }
 

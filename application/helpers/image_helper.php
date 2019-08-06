@@ -54,15 +54,16 @@ Class Images {
    {
       $config['upload_path']          = './assets/uploads/';
       $config['allowed_types']        = 'gif|jpg|png';
-      $config['max_size']             = 1000;
-      $config['max_width']            = 1024;
-      $config['max_height']           = 768;
+      $config['max_size']             = 1500;
+      $config['max_width']            = 1524;
+      $config['max_height']           = 1000;
 
       $CI = &get_instance();
       $CI->upload->initialize($config);
 
       if (!$CI->upload->do_upload($fileName)) {
-         //$error = array('error' => $CI->upload->display_errors());
+         $error = array('error' => $CI->upload->display_errors());
+         print_r($error);
          return null;
       }
 

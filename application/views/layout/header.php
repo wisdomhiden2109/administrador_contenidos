@@ -50,19 +50,19 @@
                </ul>
             </li>
             <li>
-               <a href="<?= site_url('galeria') ?>">
+               <a href="<?= base_url('galeria') ?>">
                   <i class="fas fa-photo-video icon-menu"></i>
                   Galeria
                </a>
             </li>
             <li>
-               <a href="<?= site_url('contactos') ?>">
+               <a href="<?= base_url('contactos') ?>">
                   <i class="fas fa-envelope-open icon-menu"></i>
                   Contactos web
                </a>
             </li>
             <li>
-               <a href="<?= site_url('configuracion') ?>">
+               <a href="<?= base_url('configuracion') ?>">
                   <i class="fas fa-cogs icon-menu"></i>
                   Configuración
                </a>

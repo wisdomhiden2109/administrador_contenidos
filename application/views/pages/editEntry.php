@@ -1,11 +1,18 @@
-<?php
-?>
+<style>
+   .image-preview {
+      width: 200px;
+      height: 100px;
+      margin-bottom: 5px;
+      background-repeat: no-repeat;
+      background-size: cover;
+   }
+</style>
 <div class="row">
    <div class="col-12">
       <nav aria-label="breadcrumb">
          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?= base_url() ?>">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Editar entrada</li>
+            <li class="breadcrumb-item"><a href="<?= site_url('contenido/' . $section->id_contenido) ?>">Entradas</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Editar entrada - <?= $section->nombre ?></li>
          </ol>
       </nav>
    </div>
@@ -90,10 +97,12 @@
                   break;
 
                case 'img':
+                  $value = str_replace('"', '', $field->valor);
                   ?>
+                  <div class="image-preview" style="background-image:url('<?= base_url('assets/uploads/' . $value) ?>')"></div>
                   <div class="custom-file">
                      <input type="file" class="custom-file-input" id="validatedCustomFile" name="<?= $field->id_campo ?>">
-                     <label class="custom-file-label" for="validatedCustomFile">Buscar imagen...</label>
+                     <label class="custom-file-label" for="validatedCustomFile">Cambiar imagen...</label>
                      <small id="field" class="form-text text-muted"><?= ($field->requerido) ? 'Campo requerido *' : 'Este campo no es obligatorio' ?></small>
                   </div>
                   <?php
