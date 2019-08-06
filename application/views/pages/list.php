@@ -12,8 +12,8 @@
       opacity: 0.8;
    }
 </style>
-<div class="row">
-   <div class="col-12">     
+<div class="row" id="entries">
+   <div class="col-12">
       <h2><?= ucwords($content->nombre) ?></h2>
       <hr>
    </div>
@@ -32,7 +32,7 @@
                   <label><?= $section->nombre ?></label>
                   <div class="actions float-right">
                      <a class="btn btn-info" href="<?= base_url('editar-entrada/' . $section->id_seccion) ?>"><i class="fas fa-edit"></i> Ver detalle</a>
-                     <a class="btn btn-info"><i class="fas fa-edit"></i> Eliminar</a>
+                     <a class="btn btn-info" @click="deleteEntrie(<?= $section->id_seccion ?>)"><i class="fas fa-edit"></i> Eliminar</a>
                   </div>
 
                </li>
@@ -41,3 +41,5 @@
       </div>
    </div>
 </div>
+
+<script src="<?= base_url('assets/js/entries.js') ?>"></script>

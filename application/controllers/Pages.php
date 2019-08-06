@@ -87,7 +87,6 @@ class Pages extends CI_Controller
                'id' => $keys[$i],
                'value' => $field
             );
-            $i++;
          }
          $i++;
       }
@@ -95,14 +94,16 @@ class Pages extends CI_Controller
       $i = 0;
       $filesKeys = array_keys($_FILES);
       foreach ($_FILES as $file) {
-         $file = Images::upload($filesKeys[$i]);
-         if (!is_null($file)) {
-            $fields[] = array(
-               'id' => $filesKeys[$i],
-               'value' => $file['file_name']
-            );
+         if(!empty($file['name'])){
+            $fileUpload = Images::upload($filesKeys[$i]);
+            if (!is_null($fileUpload)) {
+               $fields[] = array(
+                  'id' => $filesKeys[$i],
+                  'value' => $fileUpload['file_name']
+               );
+            }
+            $i++;
          }
-         $i++;
       }
 
 
@@ -111,14 +112,21 @@ class Pages extends CI_Controller
    }
    
    public function editEntry($idEntry){
+      $section = $this->pages->getDetailSection($idEntry);
       $data = array(
          'contents' => $this->structure->getContents(),
          'activeEntry' => $idEntry,
-         'section' => $this->pages->getDetailSection($idEntry),
-         'layoutFields' => $this->pages->getDetailEntry($idEntry)
+         'section' => $section,
+         'layoutFields' => $this->pages->getDetailEntry($idEntry,$section->id_contenido)
       );
       $this->load->view('layout/header', $data);
       $this->load->view('pages/editEntry', $data);
       $this->load->view('layout/footer');
+   }
+
+   public function deleteEntry(){
+      $request = Axios::getRequest();
+      $idEntry = $request->idEntry;
+      echo json_encode($this->pages->deleteEntry($idEntry));
    }
 }
