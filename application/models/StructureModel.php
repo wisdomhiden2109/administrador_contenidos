@@ -57,6 +57,11 @@ class StructureModel extends CI_Model
          'id_plantilla' => $request->template,
          'id_tipo' => $request->typeField,
       );
+
+      if(($request->typeField == 3 || $request->typeField == 5) && $request->contentAsociate != ""){
+         $data['contenido_asociado'] = $request->contentAsociate;
+         $data['opciones'] = "";
+      }
       $this->db->insert('campo', $data);
 
       if($this->db->affected_rows() > 0){

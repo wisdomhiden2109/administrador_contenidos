@@ -10,7 +10,16 @@
       </nav>
    </div>
 
-   <form class="col-12" action="<?= base_url('actualizar-entrada/' . $activeEntry) ?>" method="post" enctype="multipart/form-data">
+   <form class="col-12" action="<?= base_url('actualizar-entrada/') ?>" method="post" enctype="multipart/form-data">
+      <div class="col-12">
+         <h5>Nombre de la entrada</h5>
+         <div class="form-group">
+            <input type="text" class="form-control" name="entry" value="<?= $section->nombre ?>" readonly required>
+            <small id="field" class="form-text text-muted">Campor requerido, este representa el nombre de la entrada</small>
+            <input type="hidden" name="idEntry" value="<?= $activeEntry ?>">
+            <input type="hidden" name="idContent" value="<?= $section->id_contenido ?>">
+         </div>
+      </div>
       <?php foreach ($layoutFields as $field) { ?>
          <div class="col-12">
             <div class="item-form mt-4">
@@ -44,7 +53,7 @@
                   <div class="form-group">
                      <select class="form-control" id="exampleFormControlSelect1" <?= ($field->requerido) ? 'required' : '' ?> name="<?= $field->id_campo ?>">
                         <?php foreach (json_decode($field->opciones) as $option) { ?>
-                           <option value="<?= $option ?>" <?= ($value == $option)? 'selected' : ''; ?> ><?= $option ?></option>
+                           <option value="<?= $option ?>" <?= ($value == $option) ? 'selected' : ''; ?>><?= $option ?></option>
                         <?php } ?>
                      </select>
                      <small id="field" class="form-text text-muted"><?= ($field->requerido) ? 'Campo requerido *' : 'Este campo no es obligatorio' ?></small>
@@ -98,7 +107,7 @@
          </div>
       <?php } ?>
       <div class="col-12 mt-4">
-         <button type="submit" class="btn btn-info"> Crear entrada </button>
+         <button type="submit" class="btn btn-info"> Actualizar entrada </button>
       </div>
    </form>
 </div>

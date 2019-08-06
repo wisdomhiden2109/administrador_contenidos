@@ -32,6 +32,7 @@ class Pages extends CI_Controller
          'activeContent' => $idContent,
          'layoutFields' => $this->pages->getLayoutFields($idContent)
       );
+      print_r($data);
       $this->load->view('layout/header', $data);
       $this->load->view('pages/newEntry', $data);
       $this->load->view('layout/footer');
@@ -39,14 +40,18 @@ class Pages extends CI_Controller
 
    public function createEntry($idContent)
    {
+      $entry = $this->input->post("entry");
       $fields = array();
       $keys = array_keys($this->input->post());
       $i = 0;
       foreach ($this->input->post() as $field) {
-         $fields[] = array(
-            'id' => $keys[$i],
-            'value' => $field
-         );
+         if($i > 0){
+            $fields[] = array(
+               'id' => $keys[$i],
+               'value' => $field
+            );
+            $i++;
+         }
          $i++;
       }
 
@@ -61,18 +66,52 @@ class Pages extends CI_Controller
       }
       
       
-      $this->pages->createEntry($idContent,$fields);
+      $this->pages->createEntry($idContent,$entry,$fields);
       redirect(base_url('contenido/'. $idContent));
-      //print_r($this->input->post());
-      //print_r($_FILES);
+   }
+
+   public function updateEntry()
+   {
+      
+      $idEntry  = $this->input->post("idEntry"); 
+      $idContent = $this->input->post("idContent");
+      $fields = array();
+      $keys = array_keys($this->input->post());
+      $i = 0;
+      foreach ($this->input->post() as $field) {
+         if ($i > 2) {
+            $fields[] = array(
+               'id' => $keys[$i],
+               'value' => $field
+            );
+            $i++;
+         }
+         $i++;
+      }
+
+      $i = 0;
+      $filesKeys = array_keys($_FILES);
+      foreach ($_FILES as $file) {
+         $fields[] = array(
+            'id' => $filesKeys[$i],
+            'value' => $file['name']
+         );
+         $i++;
+      }
+
+
+      $this->pages->updateEntry($idEntry, $fields);
+      redirect(base_url('contenido/' . $idContent));
    }
    
    public function editEntry($idEntry){
       $data = array(
          'contents' => $this->structure->getContents(),
          'activeEntry' => $idEntry,
+         'section' => $this->pages->getDetailSection($idEntry),
          'layoutFields' => $this->pages->getDetailEntry($idEntry)
       );
+      print_r($data);
       $this->load->view('layout/header', $data);
       $this->load->view('pages/editEntry', $data);
       $this->load->view('layout/footer');

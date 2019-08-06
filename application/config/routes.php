@@ -64,4 +64,4 @@ $route['contenido/(:num)'] = 'pages/index/$1';
 $route['nueva-entrada/(:num)'] = 'pages/newEntry/$1';
 $route['crear-entrada/(:num)'] = 'pages/createEntry/$1';
 $route['editar-entrada/(:num)'] = 'pages/editEntry/$1';
-$route['actualizar-entrada/(:num)'] = 'pages/updateEntry/$1';
+$route['actualizar-entrada'] = 'pages/updateEntry';

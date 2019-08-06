@@ -20,7 +20,8 @@ var app = new Vue({
         width: 0,
         height: 0,
         optionsCreate: [],
-        fields: []
+        fields: [],
+        contentAsociate: ''
     },
     methods: {
         enableOptions() {
@@ -52,7 +53,8 @@ var app = new Vue({
                 height: this.height,
                 orderField: this.orderField,
                 template: this.template,
-                typeField: this.typeField
+                typeField: this.typeField,
+                contentAsociate: this.contentAsociate
             }).then((response) => {
                 if (response.data.code == 200) {
                     this.template = response.data.data;

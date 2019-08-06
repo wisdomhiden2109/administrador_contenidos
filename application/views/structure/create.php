@@ -117,7 +117,7 @@
                   </div>
 
                   <div class="form-group hidden" :class="{ active: activateOptions}">
-                     <label>Escriba la opción y presiona <b>ENTER</b></label>
+                     <label>Escriba la opción y presiona <b>ENTER</b> </label>
                      <input class="form-control" placeholder="Ej: gato" v-model="option" @keyup.enter='addOption()'>
                      <div class="row pt-2">
                         <div class="col-12">
@@ -126,6 +126,12 @@
                            </div>
                         </div>
                      </div>
+
+                     <label>O carga las opciones de otro contenido</label>
+                     <select class="form-control" v-model="contentAsociate">
+                        <option value="0" selected>Seleccione un contenido</option>
+                        <option v-for="content of contents" :value="content.id_contenido">{{content.nombre}}</option>
+                     </select>
                   </div>
 
 

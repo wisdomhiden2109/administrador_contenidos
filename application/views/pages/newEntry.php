@@ -10,7 +10,14 @@
       </nav>
    </div>
 
-   <form class="col-12" action="<?= base_url('crear-entrada/'.$activeContent) ?>" method="post" enctype="multipart/form-data">
+   <form class="col-12" action="<?= base_url('crear-entrada/' . $activeContent) ?>" method="post" enctype="multipart/form-data">
+      <div class="col-12">
+         <h5>Nombre de la entrada</h5>
+         <div class="form-group">
+            <input type="text" class="form-control" name="entry" required>
+            <small id="field" class="form-text text-muted">Campor requerido, este representa el nombre de la entrada</small>
+         </div>
+      </div>
       <?php foreach ($layoutFields as $field) { ?>
          <div class="col-12">
             <div class="item-form mt-4">
@@ -67,10 +74,10 @@
                         <label class="form-check-label" for="inlineCheckbox<?= $option ?>"><?= $option ?></label>
                      </div>
                   <?php }
-               break;
+                  break;
 
-            case 'img':
-               ?>
+               case 'img':
+                  ?>
                   <div class="custom-file">
                      <input type="file" class="custom-file-input" id="validatedCustomFile" <?= ($field->requerido) ? 'required' : '' ?> name="<?= $field->id_campo ?>">
                      <label class="custom-file-label" for="validatedCustomFile">Buscar imagen...</label>

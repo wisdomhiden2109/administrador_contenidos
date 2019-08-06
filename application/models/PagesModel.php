@@ -24,16 +24,31 @@ class PagesModel extends CI_Model
                ->get();
       
       if($result->num_rows() > 0){
+         foreach ($result->result() as $field) {
+            if($field->contenido_asociado != 0){
+               $optionsField = array();
+               $options = $this->db->select("s.nombre")
+                        ->from("contenido c")
+                        ->join("seccion s","s.id_contenido = c.id_contenido")
+                        ->where("c.id_contenido",$field->contenido_asociado)
+                        ->get();
+
+               foreach ($options->result() as $option ) {
+                  $optionsField[] = $option->nombre;
+               }
+               $field->opciones = json_encode($optionsField);
+            }
+         }
          return $result->result();
       }else{
          redirect(base_url('contenido/'.$idContent));
       }
    }
 
-   public function createEntry($idContent,$fields){
+   public function createEntry($idContent,$entry,$fields){
 
       $data = array(
-         'nombre' => 'Entrada',
+         'nombre' => $entry,
          'id_contenido' => $idContent
       );
 
@@ -62,6 +77,39 @@ class PagesModel extends CI_Model
       }
    }
 
+
+   public function updateEntry($idEntry, $fields)
+   {
+
+      foreach ($fields as $field) {
+         $dataField[] = array(
+            'id_campo' => $field['id'],
+            'valor' => json_encode($field['value'], JSON_UNESCAPED_UNICODE)
+         );
+      }
+
+      $this->db->where("id_seccion",$idEntry);
+      $this->db->update_batch('detalle_seccion', $dataField, 'id_campo');
+
+      if ($this->db->affected_rows() > 0) {
+         return true;
+      } else {
+         return false;
+      }
+   }
+
+   public function getDetailSection($idEntry){
+      $result = $this->db->select("*")
+         ->from("seccion s")
+         ->where("s.id_seccion", $idEntry)
+         ->get();
+      if ($result->num_rows() > 0) {
+         return $result->row();
+      } else {
+         redirect(base_url(''));
+      }
+   }
+
    public function getDetailEntry( $idEntry){
       $result = $this->db->select("ds.valor, c.*, t.tipo as tipo_campo")
          ->from("campo c")
@@ -70,7 +118,6 @@ class PagesModel extends CI_Model
          ->where("ds.id_seccion", $idEntry)
          ->order_by("c.orden", 'ASC')
          ->get();
-      echo $this->db->last_query();
       if ($result->num_rows() > 0) {
          return $result->result();
       } else {
