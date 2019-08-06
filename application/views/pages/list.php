@@ -13,8 +13,8 @@
    }
 </style>
 <div class="row">
-   <div class="col-12">
-      <h2>Secciones</h2>
+   <div class="col-12">     
+      <h2><?= ucwords($content->nombre) ?></h2>
       <hr>
    </div>
    <div class="col">
@@ -24,7 +24,7 @@
    <div class="col-12 sections">
       <div class="card mt-4">
          <div class="card-header">
-            Secciones creadas
+            Entradas creadas
          </div>
          <ul class="list-group list-group-flush">
             <?php foreach ($sections as $section) : ?>

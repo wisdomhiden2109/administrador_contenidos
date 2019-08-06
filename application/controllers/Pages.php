@@ -16,6 +16,7 @@ class Pages extends CI_Controller
 
       $data = array(
          'contents' => $this->structure->getContents(),
+         'content' => $this->structure->getDetailContent($idContent),
          'activeContent' => $idContent,
          'sections' => $this->pages->getSections($idContent)
       );
@@ -32,7 +33,6 @@ class Pages extends CI_Controller
          'activeContent' => $idContent,
          'layoutFields' => $this->pages->getLayoutFields($idContent)
       );
-      print_r($data);
       $this->load->view('layout/header', $data);
       $this->load->view('pages/newEntry', $data);
       $this->load->view('layout/footer');
@@ -111,7 +111,6 @@ class Pages extends CI_Controller
          'section' => $this->pages->getDetailSection($idEntry),
          'layoutFields' => $this->pages->getDetailEntry($idEntry)
       );
-      print_r($data);
       $this->load->view('layout/header', $data);
       $this->load->view('pages/editEntry', $data);
       $this->load->view('layout/footer');

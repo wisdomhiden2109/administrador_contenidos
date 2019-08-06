@@ -21,8 +21,8 @@
       <?php foreach ($layoutFields as $field) { ?>
          <div class="col-12">
             <div class="item-form mt-4">
-               <h5><?= strtoupper($field->nombre) ?></h5>
-               <p class="mb-0"><?= ucwords($field->descripcion) ?></p>
+               <h5><?= ucfirst($field->nombre) ?></h5>
+               <p class="mb-0"><?= ucfirst($field->descripcion) ?></p>
                <?php switch ($field->tipo_campo) {
                   case 'text':
                      ?>

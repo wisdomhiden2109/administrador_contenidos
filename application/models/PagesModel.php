@@ -119,6 +119,21 @@ class PagesModel extends CI_Model
          ->order_by("c.orden", 'ASC')
          ->get();
       if ($result->num_rows() > 0) {
+         foreach ($result->result() as $field) {
+            if ($field->contenido_asociado != 0) {
+               $optionsField = array();
+               $options = $this->db->select("s.nombre")
+                  ->from("contenido c")
+                  ->join("seccion s", "s.id_contenido = c.id_contenido")
+                  ->where("c.id_contenido", $field->contenido_asociado)
+                  ->get();
+
+               foreach ($options->result() as $option) {
+                  $optionsField[] = $option->nombre;
+               }
+               $field->opciones = json_encode($optionsField);
+            }
+         }
          return $result->result();
       } else {
          redirect(base_url(''));

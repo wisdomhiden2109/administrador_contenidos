@@ -199,4 +199,14 @@ class StructureModel extends CI_Model
 
       return $data;
    }
+
+   public function getDetailContent($content){
+      $result = $this->db->select("*")
+         ->from("contenido")
+         ->where("id_contenido", $content)
+         ->get()
+         ->row();
+
+      return $result;
+   }
 }
