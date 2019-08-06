@@ -8,13 +8,13 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('StructureModel', 'structure');
 		$this->load->model('ContactsModel', 'contacts');
-		$this->load->model('ConfigurationModel', 'configuration');
 	}
 
 
 	public function index()
 	{
 		$data = array(
+			'configuration' => $this->configuration->getConfiguration(),
 			'contents' => $this->structure->getContents(),
 		);
 		$this->load->view('layout/header',$data);
@@ -25,6 +25,7 @@ class Admin extends CI_Controller {
 	public function dashboard()
 	{
 		$data = array(
+			'configuration' => $this->configuration->getConfiguration(),
 			'contents' => $this->structure->getContents(),
 		);
 		$this->load->view('layout/header',$data);
@@ -35,6 +36,7 @@ class Admin extends CI_Controller {
 	public function galery()
 	{
 		$data = array(
+			'configuration' => $this->configuration->getConfiguration(),
 			'contents' => $this->structure->getContents(),
 		);
 		$this->load->view('layout/header',$data);
@@ -45,6 +47,7 @@ class Admin extends CI_Controller {
 	public function contact()
 	{
 		$data = array(
+			'configuration' => $this->configuration->getConfiguration(),
 			'contacts' => $this->contacts->getContacts()
 		);
 		$this->load->view('layout/header', $data);

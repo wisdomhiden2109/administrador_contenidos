@@ -13,6 +13,7 @@ class Structure extends CI_Controller
    {
 
       $data = array(
+         'configuration' => $this->configuration->getConfiguration(),
          'contents' => $this->structure->getContents(),
          'templates' => $this->structure->getTemplates()
       );
@@ -24,6 +25,7 @@ class Structure extends CI_Controller
    public function contents()
    {
       $data = array(
+         'configuration' => $this->configuration->getConfiguration(),
          'contents' => $this->structure->getContents(),
       );
       $this->load->view('layout/header',$data);
@@ -35,6 +37,7 @@ class Structure extends CI_Controller
    public function create()
    {
       $data = array(
+         'configuration' => $this->configuration->getConfiguration(),
          'contents' => $this->structure->getContents(),
          'typeFields' => $this->structure-> getTypeFields()
       );
@@ -47,6 +50,7 @@ class Structure extends CI_Controller
    public function edit()
    {
       $data = array(
+         'configuration' => $this->configuration->getConfiguration(),
          'contents' => $this->structure->getContents(),
          'typeFields' => $this->structure->getTypeFields()
       );

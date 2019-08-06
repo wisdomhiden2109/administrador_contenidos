@@ -27,11 +27,22 @@
 </head>
 
 <body>
+   <style>
+      .header-logo {
+         width: 90%;
+         height: 120px;
+         margin-left:5%;
+         background-repeat: no-repeat;
+         background-size: 100%;
+         background-position: center;
+      }
+   </style>
+
    <div class="wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar">
          <div class="sidebar-header">
-            <h3>Bootstrap Sidebar</h3>
+            <div class="header-logo" style="background-image:url('<?= base_url('assets/uploads/' . $configuration->logo) ?>')"></div>
          </div>
 
          <ul class="list-unstyled components">

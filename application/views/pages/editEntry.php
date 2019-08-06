@@ -5,6 +5,7 @@
       margin-bottom: 5px;
       background-repeat: no-repeat;
       background-size: cover;
+      background-position: center;
    }
 </style>
 <div class="row">

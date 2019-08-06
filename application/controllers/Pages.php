@@ -9,12 +9,14 @@ class Pages extends CI_Controller
       parent::__construct();
       $this->load->model('StructureModel', 'structure');
       $this->load->model('PagesModel', 'pages');
+      
    }
 
    public function index($idContent)
    {
 
       $data = array(
+         'configuration' => $this->configuration->getConfiguration(),
          'contents' => $this->structure->getContents(),
          'content' => $this->structure->getDetailContent($idContent),
          'activeContent' => $idContent,
@@ -29,6 +31,7 @@ class Pages extends CI_Controller
    public function newEntry($idContent)
    {
       $data = array(
+         'configuration' => $this->configuration->getConfiguration(),
          'contents' => $this->structure->getContents(),
          'activeContent' => $idContent,
          'layoutFields' => $this->pages->getLayoutFields($idContent)
@@ -114,6 +117,7 @@ class Pages extends CI_Controller
    public function editEntry($idEntry){
       $section = $this->pages->getDetailSection($idEntry);
       $data = array(
+         'configuration' => $this->configuration->getConfiguration(),
          'contents' => $this->structure->getContents(),
          'activeEntry' => $idEntry,
          'section' => $section,

@@ -28,5 +28,9 @@ class Configuration extends CI_Controller
       redirect(base_url('configuracion'));
    }
 
+   public function updateLogo(){
+      $this->configuration->updateLogo();
+      redirect(base_url('configuracion'));
+   }
    
 }

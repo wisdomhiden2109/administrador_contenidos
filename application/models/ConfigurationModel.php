@@ -61,4 +61,14 @@ class ConfigurationModel extends CI_Model
 
       $this->db->update("configuracion", $data);
    }
+
+   public function updateLogo(){
+      $file = Images::upload('logo');
+      if (!is_null($file)) {
+         $data = array(
+            'logo' => $file['file_name']
+         );
+         $this->db->update("configuracion", $data);
+      }
+   }
 }
